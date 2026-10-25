@@ -8,17 +8,23 @@ const userRoutes           = require("./src/routes/userRoutes");
 const app  = express();
 const PORT = process.env.PORT || 5000;
 
+// Mengizinkan frontend dari port 5173 (Vite) dan port 5500 (Live Server)
 app.use(cors({
-  origin        : "http://localhost:5173",
+  origin        : ["http://localhost:5173", "http://127.0.0.1:5500", "http://localhost:5500"],
   methods       : ["GET", "POST", "PUT", "DELETE", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Mendaftarkan Endpoint URL Utama
 app.use("/api/auth",  authRoutes);  
 app.use("/api/users", userRoutes);  
+
+// Tambahkan di bawah deklarasi rute lainnya:
+const kosRoutes = require('./src/routes/kosRoutes');
+app.use('/api/kos', kosRoutes);
 
 // 404 Handler (Jika URL salah ketik)
 app.use((req, res) => {
@@ -46,4 +52,4 @@ const startServer = async () => {
   });
 };
 
-startServer();  
+startServer();
