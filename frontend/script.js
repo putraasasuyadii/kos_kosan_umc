@@ -322,7 +322,7 @@ function renderProfilPage(){
    http://localhost:5173, jadi file HTML ini juga harus dibuka lewat
    dev server di port 5173 (mis. `npx serve -l 5173`), bukan dibuka
    langsung dari file:// atau port lain, atau fetch akan diblokir CORS. */
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://kos-kosan-backend.onrender.com/';
 
 // role di UI: 'mahasiswa' / 'pemilik'  <->  role di back end: 'penyewa' / 'pemilik'
 const roleToApi   = r => r === 'mahasiswa' ? 'penyewa' : 'pemilik';
